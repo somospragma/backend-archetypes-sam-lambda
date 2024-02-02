@@ -1,0 +1,19 @@
+{
+  "name": "hello_world",
+  "version": "1.0.0",
+  "description": "hello world sample for NodeJS",
+  "main": "app.js",
+  "type": "module",
+  "author": "SAM CLI",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.1549.0"
+  },
+  "scripts": {
+    "test": "mocha tests/unit/"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.2.0"
+  }
+}
