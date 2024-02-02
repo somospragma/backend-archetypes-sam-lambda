@@ -1,11 +1,18 @@
+import { handler as handlerSave } from "./src/handler/saveItem.js";
 
-export const lambdaHandler = (event, context) => {
+const httpMethod = {
+  POST: (event, context) => handlerSave(event, context),
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: "hello world"
-    }),
-  };
+  GET: () =>{
+    return "metodo GET"
+  },
+  default:()=>{
+    return "metodo no encontrado"
+  }
+}
+export const lambdaHandler = async (event, context) => {
+
+  const method = httpMethod[event.httpMethod] || httpMethod["default"]
+  return await method(event)
   };
   
