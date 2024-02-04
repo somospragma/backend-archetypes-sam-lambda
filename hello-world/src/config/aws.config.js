@@ -1,3 +1,7 @@
-import AWS from "aws-sdk"
+const AWS = require("aws-sdk")
 
-export const ddb = new AWS.DynamoDB();
+const ddb = new AWS.DynamoDB();
+
+module.exports ={
+  ddb
+}

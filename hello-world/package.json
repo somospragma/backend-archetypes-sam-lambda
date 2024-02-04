@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "hello world sample for NodeJS",
   "main": "app.js",
-  "type": "module",
   "author": "SAM CLI",
   "license": "MIT",
   "dependencies": {
@@ -11,7 +10,7 @@
   },
   "scripts": {
     "start": "sam local start-api --port 3000",
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "sam build"
   },
   "jest": {

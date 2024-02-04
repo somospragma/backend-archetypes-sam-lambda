@@ -1,14 +1,20 @@
-import { ddb } from "../config/aws.config.js";
-import { ObjectToDynamoDB } from "../config/utils/objestToDynamoDB.js";
+const { ddb } = require("../config/aws.config.js")
+const { toObject, toShema}  = require("../config/utils/shemaToObject.js")
 
-export const dynamoDBSaveItem = async ({Data, TableName}) => {
-  const Item = ObjectToDynamoDB(Data);
+const dynamoDBSaveItem = async ({Data, TableName}) => {
+  const Item = toShema(Data);
   const params = { TableName, Item };
   return await ddb.putItem(params).promise();
 };
 
-export const dynamoDBGetItem = async ({Search, TableName}) => {
-  const Key = ObjectToDynamoDB(Search);
+const dynamoDBGetItem = async ({Search, TableName}) => {
+  const Key = toShema(Search);
   const params = { TableName, Key };
-  return await ddb.getItem(params).promise();
+  const response =  await ddb.getItem(params).promise();
+  return toObject(response.Item)
 };
+
+module.exports ={
+  dynamoDBGetItem,
+  dynamoDBSaveItem
+}
