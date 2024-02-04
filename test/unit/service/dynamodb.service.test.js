@@ -1,10 +1,6 @@
 const { ddbDocClient } = require("../../../src/config/aws.config");
 
-const {
-  getItem,
-  saveItem,
-  ErrorDynamoBD,
-} = require("../../../src/service/dynamodb.service");
+const { getItem, saveItem } = require("../../../src/service/dynamodb.service");
 
 jest.mock("../../../src/config/aws.config.js");
 
@@ -54,7 +50,7 @@ describe("Tests service/DynamoDB dynamoDBGetItem", function () {
       const run = await getItem("example", { id: 2020 });
     } catch (error) {
       expect(error).toBeDefined();
-      expect(error.message).toBe('Error al Conectar DynamoDB');
+      expect(error.message).toBe("Error al Conectar DynamoDB");
     }
   });
 });
@@ -81,7 +77,7 @@ describe("Tests service/DynamoDB dynamoDBSaveItem", function () {
       await saveItem("example", Data);
     } catch (error) {
       expect(error).toBeDefined();
-      expect(error.message).toBe('Error al Conectar DynamoDB');
+      expect(error.message).toBe("Error al Conectar DynamoDB");
     }
   });
   it("verificamos la guardado de item", async () => {
