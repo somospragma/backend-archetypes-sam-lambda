@@ -1,4 +1,4 @@
-const ObjectToDynamoDB = require("../../../../src/config/utils/objestToDynamoDB.js");
+const ObjectToDynamoDB = require("../../../../src/config/utils/ToDynamoDB.js");
 
 describe("Tests config/ToDynamoDB", function () {
   it("verificamos que la funcion exista", async () => {
