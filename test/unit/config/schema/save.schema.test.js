@@ -11,7 +11,7 @@ describe("Tests schema/save.schema requestSaveShema", function () {
 
   it("verificamos validacion exitosa de shema", async () => {
     try {
-      const { error, value } = requestSaveShema.validate({ name: 'astring', id:2020 })
+      const { error, value } = requestSaveShema.validate({ name: 'astring', id:"2020" })
       expect(error).not.toBeDefined()
     } catch (error) {
       expect(error).not.toThrowError();
