@@ -1,7 +1,7 @@
 const { saveApp } = require("../app/save.app");
 
 const statusError = {
-  ValidationError: ({ message }) => ({
+  ValidationError: ({ message, details }) => ({
     statusCode: 400,
     message,
     errors: details,
