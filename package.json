@@ -6,6 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
+    "start-api":"sam local start-api",
     "test": "jest --watchAll --verbose --coverage"
   },
   "jest": {
