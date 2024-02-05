@@ -1,37 +1,18 @@
-const { getItem, saveItem } = require("./src/service/dynamodb.service");
+const { saveHandler } = require("./src/handler/save.handler");
 
-const tableName = process.env.SAMPLE_TABLE;
+const httpMethod = {
+  POST: (event, context) => saveHandler(event, context),
 
+  GET: () => {
+    return "metodo GET";
+  },
+  default: () => {
+    return "metodo no encontrado";
+  },
+};
 const lambdaHandler = async (event, context) => {
-  // All log statements are written to CloudWatch
-  console.info("received:", event);
-
-  // Get id and name from the body of the request
-  const id = event.body.id;
-  const name = event.body.name;
-
-  const response = {
-    statusCode: 200,
-  };
-
-  try {
-    await saveItem(tableName, { id, name });
-    response["body"] = JSON.stringify([]);
-
-    const data = await getItem(tableName, { id })
-    response["body"] = JSON.stringify(data);
-  } catch (err) {
-    response["statusCode"] = 500
-    response["error"] = err.message;
-  }
-
-  // All log statements are written to CloudWatch
-  console.info(
-    `response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`
-  );
-  return response;
+  const method = httpMethod[event.httpMethod] || httpMethod["default"];
+  return await method(event, context);
 };
 
-module.exports = {
-  lambdaHandler,
-};
+module.exports = { lambdaHandler };
