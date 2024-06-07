@@ -20,7 +20,6 @@ Resources:
       Architectures:
         - x86_64
       MemorySize: 128
-      Timeout: 100
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
         - DynamoDBCrudPolicy:
